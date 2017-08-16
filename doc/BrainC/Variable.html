@@ -119,19 +119,6 @@
         </div>
       </div>
       
-      <div id="attribute-i-name" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">name</span><span
-            class="attribute-access-type">[R]</span>
-        </div>
-
-        <div class="method-description">
-        
-        
-        
-        </div>
-      </div>
-      
       <div id="attribute-i-value" class="method-detail">
         <div class="method-heading attribute-method-heading">
           <span class="method-name">value</span><span
@@ -159,7 +146,7 @@
         
         <div class="method-heading">
           <span class="method-name">new</span><span
-            class="method-args">(name, index, value = nil)</span>
+            class="method-args">(index, value = 0)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -174,12 +161,9 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/brain_c.rb, line 23</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">index</span>, <span class="ruby-identifier">value</span> = <span class="ruby-keyword">nil</span>)
-  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">nil?</span>
+            <pre><span class="ruby-comment"># File lib/brain_c.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">index</span>, <span class="ruby-identifier">value</span> = <span class="ruby-value">0</span>)
   <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">index</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span>
-
-  <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">name</span>
   <span class="ruby-ivar">@index</span> = <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@value</span> = <span class="ruby-identifier">value</span>
 <span class="ruby-keyword">end</span></pre>

@@ -3,11 +3,15 @@
 #
 module BrainC
   def self.compile(src)
+    vars = {}
+
     src = src.delete("\n")
     src = src[/int main\(\) \{(.*)\}/, 1]
     args = src.split(';')
     args.each do |arg|
-      puts arg.chomp.strip
+      arg = arg.chomp.strip
+      vars[arg] = 1
+      puts arg
     end
     args
   end
@@ -16,15 +20,11 @@ module BrainC
   # This class represents a Variable on the BF Tape
   #
   class Variable
-    attr_reader :name
     attr_reader :index
     attr_accessor :value
 
-    def initialize(name, index, value = nil)
-      raise ArgumentError if name.nil?
+    def initialize(index, value = 0)
       raise ArgumentError if index < 0
-
-      @name = name
       @index = index
       @value = value
     end

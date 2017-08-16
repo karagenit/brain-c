@@ -122,11 +122,15 @@
           <div class="method-source-code" id="compile-source">
             <pre><span class="ruby-comment"># File lib/brain_c.rb, line 5</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">compile</span>(<span class="ruby-identifier">src</span>)
+  <span class="ruby-identifier">vars</span> = {}
+
   <span class="ruby-identifier">src</span> = <span class="ruby-identifier">src</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&quot;\n&quot;</span>)
   <span class="ruby-identifier">src</span> = <span class="ruby-identifier">src</span>[<span class="ruby-regexp">/int main\(\) \{(.*)\}/</span>, <span class="ruby-value">1</span>]
   <span class="ruby-identifier">args</span> = <span class="ruby-identifier">src</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;;&#39;</span>)
   <span class="ruby-identifier">args</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">arg</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">chomp</span>.<span class="ruby-identifier">strip</span>
+    <span class="ruby-identifier">arg</span> = <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">chomp</span>.<span class="ruby-identifier">strip</span>
+    <span class="ruby-identifier">vars</span>[<span class="ruby-identifier">arg</span>] = <span class="ruby-value">1</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">arg</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">args</span>
 <span class="ruby-keyword">end</span></pre>
