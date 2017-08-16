@@ -1,1 +1,1 @@
-var search_data = {"index":{"searchIndex":["brainc"],"longSearchIndex":["brainc"],"info":[["BrainC","","BrainC.html","","<p>Compilation tools for converting C to Brainfuck\n"]]}}
+var search_data = {"index":{"searchIndex":["brainc","compile()"],"longSearchIndex":["brainc","brainc::compile()"],"info":[["BrainC","","BrainC.html","","<p>Compilation tools for converting C to Brainfuck\n"],["compile","BrainC","BrainC.html#method-c-compile","(file)",""]]}}

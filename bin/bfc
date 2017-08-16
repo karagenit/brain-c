@@ -1,3 +1,19 @@
 require 'brain_c'
+require 'optparse'
 
-puts "Hello!"
+options = {}
+options[:out] = 'a.out'
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: bfc [src] [options]"
+
+  opts.on('-o', '--output OUT', String, 'Output File') do |out|
+    options[:out] = out
+  end
+end.parse!
+
+options[:src] = ARGV.pop
+raise OptionParser::MissingArgument if options[:src].nil?
+
+p options
+p ARGV
