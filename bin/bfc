@@ -16,5 +16,9 @@ options[:src] = ARGV.pop
 raise OptionParser::MissingArgument if options[:src].nil?
 
 source = IO.read(options[:src])
-bf = BrainC.compile(source)
-IO.write(options[:out], bf)
+
+compiler = BrainC::Compiler.new source
+instructions = compiler.preprocess
+
+p instructions
+#IO.write(options[:out], bf)
