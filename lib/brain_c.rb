@@ -10,12 +10,17 @@ module BrainC
     attr_reader :vars # Variables on the BF Tape
     attr_reader :ins # C Instructions, parsed from source
     attr_reader :out # Output BF Code
+    attr_reader :tapelen # Index of the next free slot on the Tape
+    attr_reader :index # Current index on the tape
 
     def initialize(source)
       raise ArgumentError if source.nil?
       @src = source
       @vars = {}
+      @ins = {}
       @out = ''
+      @tapelen = 0
+      @index = 0
     end
 
     ##
@@ -57,7 +62,7 @@ module BrainC
 
       case fields.first
       when 'int', 'char'
-        puts "Adding var #{fields[1]}"
+        vars[fields[1]] = alloc_var
       when /putchar\((.*)\)/
         puts "Printing var #{Regexp.last_match(1)}"
       else
@@ -67,7 +72,12 @@ module BrainC
         end
       end
     end
-  end
+
+    def alloc_var(value = 0)
+      @index += 1
+      Variable.new(@index - 1, value)
+    end
+  end # End Compiler Class
 
   ##
   # This class represents a Variable on the BF Tape
