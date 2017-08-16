@@ -242,6 +242,19 @@
             <pre><span class="ruby-comment"># File lib/brain_c.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">compile</span>(<span class="ruby-identifier">inst</span>)
   <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">inst</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">fields</span> = <span class="ruby-identifier">inst</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39; &#39;</span>)
+
+  <span class="ruby-keyword">case</span> <span class="ruby-identifier">fields</span>.<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;int&#39;</span>, <span class="ruby-string">&#39;char&#39;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Adding var #{fields[1]}&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-regexp">/putchar\((.*)\)/</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Printing var #{Regexp.last_match(1)}&quot;</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">fields</span>[<span class="ruby-value">1</span>]
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;=&#39;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Setting #{fields[0]} to #{fields[2]}&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           

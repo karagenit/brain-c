@@ -53,6 +53,19 @@ module BrainC
     #
     def compile(inst)
       raise ArgumentError if inst.nil?
+      fields = inst.split(' ')
+
+      case fields.first
+      when 'int', 'char'
+        puts "Adding var #{fields[1]}"
+      when /putchar\((.*)\)/
+        puts "Printing var #{Regexp.last_match(1)}"
+      else
+        case fields[1]
+        when '='
+          puts "Setting #{fields[0]} to #{fields[2]}"
+        end
+      end
     end
   end
 
