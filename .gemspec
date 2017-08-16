@@ -9,6 +9,7 @@ Gem::Specification.new do |s|
     s.email         = 'karagenit@outlook.com'
     s.files         = ['lib/brain_c.rb']
     s.platform      = Gem::Platform::RUBY
+    s.executables   << 'bfc'
 
     s.add_development_dependency 'rubocop',                     '~> 0.49'
     s.add_development_dependency 'rdoc',                        '~> 4.2'
