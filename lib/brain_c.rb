@@ -6,6 +6,11 @@ module BrainC
   # This class is used to compile C source to Brainfuck
   #
   class Compiler
+    attr_reader :src # Raw C source code
+    attr_reader :vars # Variables on the BF Tape
+    attr_reader :ins # C Instructions, parsed from source
+    attr_reader :out # Output BF Code
+
     def initialize(source)
       raise ArgumentError if source.nil?
       @src = source

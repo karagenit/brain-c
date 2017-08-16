@@ -108,6 +108,66 @@
     
 
     
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-ins" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">ins</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-out" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">out</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-src" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">src</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-vars" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">vars</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
 
     
      <section id="public-class-5Buntitled-5D-method-details" class="method-section">
@@ -135,7 +195,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/brain_c.rb, line 9</span>
+            <pre><span class="ruby-comment"># File lib/brain_c.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">source</span>)
   <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">source</span>.<span class="ruby-identifier">nil?</span>
   <span class="ruby-ivar">@src</span> = <span class="ruby-identifier">source</span>
@@ -179,7 +239,7 @@
 
           
           <div class="method-source-code" id="compile-source">
-            <pre><span class="ruby-comment"># File lib/brain_c.rb, line 49</span>
+            <pre><span class="ruby-comment"># File lib/brain_c.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">compile</span>(<span class="ruby-identifier">inst</span>)
   <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">inst</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -212,7 +272,7 @@
 
           
           <div class="method-source-code" id="exec-source">
-            <pre><span class="ruby-comment"># File lib/brain_c.rb, line 20</span>
+            <pre><span class="ruby-comment"># File lib/brain_c.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">exec</span>
   <span class="ruby-identifier">preprocess</span>
   <span class="ruby-identifier">interpret</span>
@@ -247,7 +307,7 @@
 
           
           <div class="method-source-code" id="interpret-source">
-            <pre><span class="ruby-comment"># File lib/brain_c.rb, line 40</span>
+            <pre><span class="ruby-comment"># File lib/brain_c.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">interpret</span>
   <span class="ruby-ivar">@ins</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">inst</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">compile</span> <span class="ruby-identifier">inst</span>
@@ -283,7 +343,7 @@ the instructions found.</p>
 
           
           <div class="method-source-code" id="preprocess-source">
-            <pre><span class="ruby-comment"># File lib/brain_c.rb, line 30</span>
+            <pre><span class="ruby-comment"># File lib/brain_c.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">preprocess</span>
   <span class="ruby-ivar">@src</span> = <span class="ruby-ivar">@src</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&quot;\n&quot;</span>)
   <span class="ruby-ivar">@src</span> = <span class="ruby-ivar">@src</span>[<span class="ruby-regexp">/int main\(\) \{(.*)\}/</span>, <span class="ruby-value">1</span>]

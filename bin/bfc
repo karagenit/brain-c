@@ -18,10 +18,10 @@ raise OptionParser::MissingArgument if options[:src].nil?
 source = IO.read(options[:src])
 
 compiler = BrainC::Compiler.new source
-instructions = compiler.preprocess
+compiler.exec
 
-compiler = BrainC::Compiler.new source
-out = compiler.exec
+instructions = compiler.ins
+out = compiler.out
 
 p instructions
 p out
