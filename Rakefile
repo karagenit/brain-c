@@ -12,7 +12,7 @@ end
 
 task :clean do
     system "gem uninstall brain_c"
-    system "rm *.gem"
+    system "rm *.gem *.o *.out"
 end
 
 task :test do
