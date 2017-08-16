@@ -14,11 +14,12 @@ module BrainC
     end
 
     ##
-    # Calls preprocess and then compile.
-    # Returns outputted Brainfuck
+    # Calls preprocess and then interpret.
+    # Returns outputted Brainfuck.
     #
     def exec
       preprocess
+      interpret
       @out
     end
 
@@ -31,6 +32,22 @@ module BrainC
       @src = @src[/int main\(\) \{(.*)\}/, 1]
       @ins = @src.split(';')
       @ins.map! { |inst| inst.chomp.strip }
+    end
+
+    ##
+    # Iterates over Instructions, executes Compile on each.
+    #
+    def interpret
+      @ins.each do |inst|
+        compile inst
+      end
+    end
+
+    ##
+    # Converts instruction to BF, writes to output.
+    #
+    def compile(inst)
+      raise ArgumentError if inst.nil?
     end
   end
 

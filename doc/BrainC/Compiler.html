@@ -72,7 +72,11 @@
     
     <li ><a href="#method-c-new">::new</a>
     
+    <li ><a href="#method-i-compile">#compile</a>
+    
     <li ><a href="#method-i-exec">#exec</a>
+    
+    <li ><a href="#method-i-interpret">#interpret</a>
     
     <li ><a href="#method-i-preprocess">#preprocess</a>
     
@@ -156,6 +160,39 @@
        </header>
 
     
+      <div id="method-i-compile" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">compile</span><span
+            class="method-args">(inst)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Converts instruction to BF, writes to output.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="compile-source">
+            <pre><span class="ruby-comment"># File lib/brain_c.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">compile</span>(<span class="ruby-identifier">inst</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">inst</span>.<span class="ruby-identifier">nil?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-exec" class="method-detail ">
         
         <div class="method-heading">
@@ -169,7 +206,7 @@
 
         <div class="method-description">
           
-          <p>Calls preprocess and then compile. Returns outputted Brainfuck</p>
+          <p>Calls preprocess and then interpret. Returns outputted Brainfuck.</p>
           
           
 
@@ -178,7 +215,43 @@
             <pre><span class="ruby-comment"># File lib/brain_c.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">exec</span>
   <span class="ruby-identifier">preprocess</span>
+  <span class="ruby-identifier">interpret</span>
   <span class="ruby-ivar">@out</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-interpret" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">interpret</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Iterates over Instructions, executes Compile on each.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="interpret-source">
+            <pre><span class="ruby-comment"># File lib/brain_c.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">interpret</span>
+  <span class="ruby-ivar">@ins</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">inst</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">compile</span> <span class="ruby-identifier">inst</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -210,7 +283,7 @@ the instructions found.</p>
 
           
           <div class="method-source-code" id="preprocess-source">
-            <pre><span class="ruby-comment"># File lib/brain_c.rb, line 29</span>
+            <pre><span class="ruby-comment"># File lib/brain_c.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">preprocess</span>
   <span class="ruby-ivar">@src</span> = <span class="ruby-ivar">@src</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&quot;\n&quot;</span>)
   <span class="ruby-ivar">@src</span> = <span class="ruby-ivar">@src</span>[<span class="ruby-regexp">/int main\(\) \{(.*)\}/</span>, <span class="ruby-value">1</span>]

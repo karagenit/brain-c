@@ -20,5 +20,9 @@ source = IO.read(options[:src])
 compiler = BrainC::Compiler.new source
 instructions = compiler.preprocess
 
+compiler = BrainC::Compiler.new source
+out = compiler.exec
+
 p instructions
+p out
 #IO.write(options[:out], bf)
