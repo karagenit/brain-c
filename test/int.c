@@ -1,5 +1,5 @@
 int main() {
     int i;
-    i = 3;
+    i = 65;
     putchar(i);
 }
