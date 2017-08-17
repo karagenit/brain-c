@@ -64,7 +64,8 @@ module BrainC
       when 'int', 'char'
         vars[fields[1]] = alloc_var
       when /putchar\((.*)\)/
-        puts "Printing var #{Regexp.last_match(1)}"
+        jump_name(Regexp.last_match(1))
+        print
       else
         case fields[1]
         when '='
@@ -79,9 +80,13 @@ module BrainC
     end
 
     def set_var(name, value)
-      jump(vars[name].index)
+      jump_name(name)
       clear
       add(value)
+    end
+
+    def jump_name(name)
+      jump(vars[name].index)
     end
 
     def jump(index)
@@ -106,6 +111,10 @@ module BrainC
       else
         value.abs.times { @out << '-' }
       end
+    end
+
+    def print
+      out << '.'
     end
   end # End Compiler Class
 
