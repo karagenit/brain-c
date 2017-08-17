@@ -23,4 +23,4 @@ compiler.exec
 p compiler.ins
 p compiler.vars
 p compiler.out
-#IO.write(options[:out], bf)
+IO.write(options[:out], compiler.out)
