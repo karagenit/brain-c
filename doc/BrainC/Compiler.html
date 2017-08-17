@@ -72,7 +72,11 @@
     
     <li ><a href="#method-c-new">::new</a>
     
+    <li ><a href="#method-i-add">#add</a>
+    
     <li ><a href="#method-i-alloc_var">#alloc_var</a>
+    
+    <li ><a href="#method-i-clear">#clear</a>
     
     <li ><a href="#method-i-compile">#compile</a>
     
@@ -80,7 +84,11 @@
     
     <li ><a href="#method-i-interpret">#interpret</a>
     
+    <li ><a href="#method-i-jump">#jump</a>
+    
     <li ><a href="#method-i-preprocess">#preprocess</a>
+    
+    <li ><a href="#method-i-set_var">#set_var</a>
     
   </ul>
 </div>
@@ -251,6 +259,44 @@
        </header>
 
     
+      <div id="method-i-add" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add</span><span
+            class="method-args">(value)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="add-source">
+            <pre><span class="ruby-comment"># File lib/brain_c.rb, line 102</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">add</span>(<span class="ruby-identifier">value</span>)
+  <span class="ruby-identifier">value</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_i</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">value</span>.<span class="ruby-identifier">times</span> { <span class="ruby-ivar">@out</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;+&#39;</span> }
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">value</span>.<span class="ruby-identifier">abs</span>.<span class="ruby-identifier">times</span> { <span class="ruby-ivar">@out</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;-&#39;</span> }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-alloc_var" class="method-detail ">
         
         <div class="method-heading">
@@ -272,8 +318,41 @@
           <div class="method-source-code" id="alloc_var-source">
             <pre><span class="ruby-comment"># File lib/brain_c.rb, line 76</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">alloc_var</span>(<span class="ruby-identifier">value</span> = <span class="ruby-value">0</span>)
-  <span class="ruby-ivar">@index</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
-  <span class="ruby-constant">Variable</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@index</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">value</span>)
+  <span class="ruby-ivar">@tapelen</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+  <span class="ruby-constant">Variable</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@tapelen</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">value</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-clear" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">clear</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="clear-source">
+            <pre><span class="ruby-comment"># File lib/brain_c.rb, line 98</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">clear</span>
+  <span class="ruby-ivar">@out</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;[-]&#39;</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -317,7 +396,7 @@
   <span class="ruby-keyword">else</span>
     <span class="ruby-keyword">case</span> <span class="ruby-identifier">fields</span>[<span class="ruby-value">1</span>]
     <span class="ruby-keyword">when</span> <span class="ruby-string">&#39;=&#39;</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Setting #{fields[0]} to #{fields[2]}&quot;</span>
+      <span class="ruby-identifier">set_var</span>(<span class="ruby-identifier">fields</span>[<span class="ruby-value">0</span>], <span class="ruby-identifier">fields</span>[<span class="ruby-value">2</span>])
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -401,6 +480,46 @@
       </div>
 
     
+      <div id="method-i-jump" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">jump</span><span
+            class="method-args">(index)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="jump-source">
+            <pre><span class="ruby-comment"># File lib/brain_c.rb, line 87</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">jump</span>(<span class="ruby-identifier">index</span>)
+  <span class="ruby-identifier">index</span> = <span class="ruby-identifier">index</span>.<span class="ruby-identifier">to_i</span>
+  <span class="ruby-identifier">diff</span> = <span class="ruby-identifier">index</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@index</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">diff</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">diff</span>.<span class="ruby-identifier">times</span> { <span class="ruby-ivar">@out</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;&gt;&#39;</span> }
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;targ: #{index} ind: #{@index} run: #{diff.abs}&quot;</span>
+    <span class="ruby-identifier">diff</span>.<span class="ruby-identifier">abs</span>.<span class="ruby-identifier">times</span> { <span class="ruby-ivar">@out</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&#39;&lt;&#39;</span> }
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
       <div id="method-i-preprocess" class="method-detail ">
         
         <div class="method-heading">
@@ -427,6 +546,41 @@ the instructions found.</p>
   <span class="ruby-ivar">@src</span> = <span class="ruby-ivar">@src</span>[<span class="ruby-regexp">/int main\(\) \{(.*)\}/</span>, <span class="ruby-value">1</span>]
   <span class="ruby-ivar">@ins</span> = <span class="ruby-ivar">@src</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&#39;;&#39;</span>)
   <span class="ruby-ivar">@ins</span>.<span class="ruby-identifier">map!</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">inst</span><span class="ruby-operator">|</span> <span class="ruby-identifier">inst</span>.<span class="ruby-identifier">chomp</span>.<span class="ruby-identifier">strip</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-set_var" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_var</span><span
+            class="method-args">(name, value)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="set_var-source">
+            <pre><span class="ruby-comment"># File lib/brain_c.rb, line 81</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_var</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">value</span>)
+  <span class="ruby-identifier">jump</span>(<span class="ruby-identifier">vars</span>[<span class="ruby-identifier">name</span>].<span class="ruby-identifier">index</span>)
+  <span class="ruby-identifier">clear</span>
+  <span class="ruby-identifier">add</span>(<span class="ruby-identifier">value</span>)
 <span class="ruby-keyword">end</span></pre>
           </div>
           

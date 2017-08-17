@@ -68,14 +68,44 @@ module BrainC
       else
         case fields[1]
         when '='
-          puts "Setting #{fields[0]} to #{fields[2]}"
+          set_var(fields[0], fields[2])
         end
       end
     end
 
     def alloc_var(value = 0)
-      @index += 1
-      Variable.new(@index - 1, value)
+      @tapelen += 1
+      Variable.new(@tapelen - 1, value)
+    end
+
+    def set_var(name, value)
+      jump(vars[name].index)
+      clear
+      add(value)
+    end
+
+    def jump(index)
+      index = index.to_i
+      diff = index - @index
+      if diff > 0
+        diff.times { @out << '>' }
+      else
+        puts "targ: #{index} ind: #{@index} run: #{diff.abs}"
+        diff.abs.times { @out << '<' }
+      end
+    end
+
+    def clear
+      @out << '[-]'
+    end
+
+    def add(value)
+      value = value.to_i
+      if value > 0
+        value.times { @out << '+' }
+      else
+        value.abs.times { @out << '-' }
+      end
     end
   end # End Compiler Class
 
